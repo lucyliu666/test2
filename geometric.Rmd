@@ -1,0 +1,142 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+library(tidyverse)
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, size = class))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = drv, y = cyl)) +
+  facet_grid(drv ~ cyl)
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth(aes(linetype = drv), method = "loess")
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(aes(color = drv)) +
+  geom_smooth(aes(linetype = drv), color = "black", method = "loess")
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(color = class)) +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, color = drv),
+    show.legend = FALSE
+  )
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot() +
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+
+```{r} 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(size = 5) +
+  geom_smooth(size = 2, se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_histogram(aes(displ, fill = drv), alpha = 0.4, bins = 60) +
+  geom_density(aes(displ, fill = drv), alpha = 0.4) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  theme(legend.position = c(0.85, 0.8))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_histogram(aes(displ, fill = drv), alpha = 0.4, bins = 60) +
+  geom_density(aes(displ, fill = drv), alpha = 0.4)
+```
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point()
+```
+```{r}
+ggplot(d, aes(x = rFFA, y = FRA)) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = dp) +
+  geom_point(
+    mapping = aes(x = facemem, y = rOFA_roi, color = gender),
+    show.legend = FALSE
+  )
+```
+```{r}
+ggplot(data = dp) +
+  geom_point(mapping = aes(x = facemem, y = rOFA_roi, color = facemem < 0.6))
+```
+
+```{r}
+(df <- gapminder::gapminder %>%
+  filter(year == 1992))
+```
+
+```{r,fig.width=3,out.width="100%", fig.asp=0.7}
+ggplot(df) +
+  geom_point(aes(x = gdpPercap, y = lifeExp))
+```
+
+```{r}
+ggplot(df) +
+  geom_point(aes(gdpPercap, lifeExp, color = continent, size = pop)) +
+  scale_x_log10(breaks = c(300, 1000, 3e3, 10e3, 30e3)) +
+  labs(x = "GDP(log)", y = "life exp.", title = "gaminder", color = "continent", size = "population")
+```
+
+
